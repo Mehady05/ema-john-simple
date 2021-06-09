@@ -4,7 +4,11 @@ import { Link } from 'react-router-dom';
 const Cart = (props) => {
     const cart = props.cart;
     console.log(cart);
-    const total = cart.reduce((previous, currentPrice, value )=>  previous + currentPrice.price, 0);
+    let total = 0;
+    for (let i = 0; i < cart.length; i++) {
+        const product = cart[i];
+        total = total + product.price * product.quantity;     
+    }
 
     let shipping = 0;
     if(total > 35){
@@ -13,7 +17,8 @@ const Cart = (props) => {
     else if(total > 15){
         shipping = 4.99
     }
-    else if (total > 0 ){
+    else if
+     (total > 0 ){
         shipping = 12.99
     }
 
@@ -35,9 +40,9 @@ const Cart = (props) => {
             <p><small>Shipping Cost : {formatNumber(shipping)}</small></p>
             <h3>Total Price : {formatNumber(grandTotal)}</h3>
             <br/>
-            <Link to="/review">
-                <button className="main_button">Review Order</button>
-            </Link>
+           {
+               props.children
+           }
             
         </div>
     );

@@ -31,7 +31,8 @@ function App() {
           <Route exact path="/">
             <Shop></Shop>
           </Route>
-          <Route path="/product/:productKey">
+          {/* product dynamic key (name click and go to this page) */}
+          <Route path="/product/:productKey"> 
             <ProductDetail></ProductDetail>
           </Route>
           <Route path="*">

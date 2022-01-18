@@ -35,6 +35,7 @@ const Shop = () => {
       const others = cart.filter(pd=>pd.key !== product.key);
       newCart = [...others, sameProduct];
     }
+    // 1st time add to the cart with quantity.............
     else{
       product.quantity = 1;
       newCart = [...cart, product];

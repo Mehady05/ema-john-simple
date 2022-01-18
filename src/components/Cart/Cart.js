@@ -3,13 +3,20 @@ import { Link } from 'react-router-dom';
 
 const Cart = (props) => {
     const cart = props.cart;
-    console.log(cart);
+
     let total = 0;
     for (let i = 0; i < cart.length; i++) {
         const product = cart[i];
         total = total + product.price * product.quantity;     
     }
 
+    //const allQuantity = cart.reduce((sum, quantity)=> sum + quantity, 0)
+
+    let productCount = 0;
+    for (let i = 0; i < cart.length; i++) {
+        const count = cart[i];
+        productCount = productCount + count.quantity
+    }
     let shipping = 0;
     if(total > 35){
         shipping = 0
@@ -34,7 +41,8 @@ const Cart = (props) => {
     return (
         <div>
             <h2>Order Summary</h2>
-            <h4>Items Ordered : {props.cart.length}</h4>
+            <h4>Items Ordered : {cart.length}</h4>
+            <p>Quantity : {productCount}</p>
             <p>Product Price : {formatNumber(total)}</p>
             <p><small>Tax : {formatNumber(tax)}</small></p>
             <p><small>Shipping Cost : {formatNumber(shipping)}</small></p>

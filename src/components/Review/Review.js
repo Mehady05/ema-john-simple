@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import fakeData from '../../fakeData';
-import { getDatabaseCart, processOrder, removeFromDatabaseCart } from '../../utilities/databaseManager';
+import { getDatabaseCart, removeFromDatabaseCart } from '../../utilities/databaseManager';
 import Cart from '../Cart/Cart';
 import ReviewItem from '../ReviewItem/ReviewItem';
 import image from '../../images/giphy.gif'
@@ -10,12 +10,11 @@ const Review = () => {
 const [cart, setCart] = useState([]);
 
 //picture giffy added in here so that we use this state
-const [orderPlaced, setOrderPlaced] = useState(false);
-
-let imageThankYou;
-if(orderPlaced){
-    imageThankYou = <img src={image}/>
-}
+// const [orderPlaced, setOrderPlaced] = useState(false);
+// let imageThankYou;
+// if(orderPlaced){
+//     imageThankYou = <img src={image}/>
+// }
 
 
 //remove item from cart
@@ -26,18 +25,13 @@ if(orderPlaced){
     }
 
 
-    //place order method from database and clean all from this website when we click this place order
-    // const handleProceedCheckout = ()=>{
-    //     setCart([]);
-    //     processOrder();
-    //     setOrderPlaced(true);
-    // }
-
     //now we go to the shipment page
 
     const history = useHistory()
+
     const handleProceedCheckout = ()=>{
         history.push("/shipment")
+        // setOrderPlaced(true)    show image after the 
     };
 
     useEffect(() => {
@@ -57,16 +51,15 @@ if(orderPlaced){
     return (
         <div className="twin_container">
            <div className = 'product_container'>
-            <h1>Cart Items Review:{cart.length}</h1>
                 {
                     cart.map(pd=> <ReviewItem 
                     product={pd}
                     removeProduct = {removeProduct}
                     ></ReviewItem>)
                 }
-                {
+                {/* {
                     imageThankYou
-                }
+                } */}
            </div>
            <div className = "cart_container">
                 <Cart cart={cart}>
